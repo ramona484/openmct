@@ -208,14 +208,13 @@ export default {
                 return;
             }
 
-            let pageId = newParams.pageId ;
+            let pageId = newParams.pageId;
             let sectionId = newParams.sectionId;
 
             if (!pageId && !sectionId) {
                 return;
             }
 
-            let section;
             this.sections.forEach(section => {
                 section.isSelected = Boolean(section.id === sectionId);
 
