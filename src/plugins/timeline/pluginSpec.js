@@ -103,10 +103,6 @@ describe('the plugin', function () {
                 },
                 type: 'plan',
                 id: "test-object",
-                identifier: {
-                    key: "e13953cb-2689-4c93-beba-788b196e6f66",
-                    namespace: ""
-                },
                 selectFile: {
                     body: JSON.stringify({
                         "TEST-GROUP": [
