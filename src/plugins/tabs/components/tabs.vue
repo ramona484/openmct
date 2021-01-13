@@ -65,11 +65,6 @@
 <script>
 import ObjectView from '../../../ui/components/ObjectView.vue';
 import RemoveAction from '../../remove/RemoveAction.js';
-import {
-    getSearchParam,
-    setSearchParam,
-    deleteSearchParam
-} from 'utils/openmctLocation';
 
 const unknownObjectType = {
     definition: {
@@ -114,7 +109,7 @@ export default {
             this.composition.on('remove', this.removeItem);
             this.composition.on('reorder', this.onReorder);
             this.composition.load().then(() => {
-                let currentTabIndexFromURL = getSearchParam(this.openmct, this.searchTabKey);
+                let currentTabIndexFromURL = this.openmct.router.getSearchParam(this.searchTabKey);
                 let currentTabIndexFromDomainObject = this.internalDomainObject.currentTabIndex;
 
                 if (currentTabIndexFromURL !== null) {
@@ -281,15 +276,15 @@ export default {
             this.openmct.objects.mutate(this.internalDomainObject, 'currentTabIndex', index);
         },
         storeCurrentTabIndexInURL(index) {
-            let currentTabIndexInURL = getSearchParam(this.openmct, this.searchTabKey);
+            let currentTabIndexInURL = this.openmct.router.getSearchParam(this.searchTabKey);
 
             if (index !== currentTabIndexInURL) {
-                setSearchParam(this.openmct, this.searchTabKey, index);
+                this.openmct.router.setSearchParam(this.searchTabKey, index);
                 this.currentTabIndex = index;
             }
         },
         clearCurrentTabIndexFromURL() {
-            deleteSearchParam(this.openmct, this.searchTabKey);
+            this.openmct.router.deleteSearchParam(this.searchTabKey);
         },
         updateStatus(keyString, status) {
             let tabPos = this.tabsList.findIndex((tab) => {

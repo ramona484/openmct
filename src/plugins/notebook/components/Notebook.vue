@@ -194,7 +194,7 @@ export default {
             this.unlisten();
         }
 
-        window.addEventListener('removeEventListener', this.formatSidebar);
+        window.removeEventListener('orientationchange', this.formatSidebar);
         this.openmct.router.off('change:params', this.changeSectionPage);
     },
     updated: function () {
